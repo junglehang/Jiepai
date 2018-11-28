@@ -117,6 +117,11 @@ def parse_page_detail(html,url):
 
 
 def save_to_mongo(result):
+    """
+    存储到mongodb
+    :param result:
+    :return:
+    """
     if db[MONGO_TABLE].insert(result):
         print("存储到mongodb")
         return True
@@ -124,6 +129,11 @@ def save_to_mongo(result):
         return False
 
 def download_image(url):
+    """
+    下载图片
+    :param url:
+    :return:
+    """
     try:
         print("正在下载",url)
         response = requests.get(url)
@@ -135,6 +145,11 @@ def download_image(url):
         return None
 
 def save_to_image(content):
+    """
+    保存图片
+    :param content:
+    :return:
+    """
     file_path = '{0}/{1}.{2}'.format(os.getcwd(),md5(content).hexdigest(),"jpg")
     if not os._exists(file_path):
         with open(file_path,"wb") as f:
